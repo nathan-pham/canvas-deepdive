@@ -1,5 +1,6 @@
 export default class Thing {
 
+    resize() {}
     update() {}
     render() {}
 

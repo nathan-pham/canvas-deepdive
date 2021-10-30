@@ -1,5 +1,6 @@
 export default class Canvas {
 
+    #animationID = null
     things = []
 
     constructor({ container=document.body }) {
@@ -13,6 +14,13 @@ export default class Canvas {
 
     }
 
+    resize() {
+
+        Object.assign(this.canvas, this.dimensions)
+        this.things.forEach(thing => thing.resize(this))
+    
+    }
+
     get dimensions() {
 
         return {
@@ -24,12 +32,25 @@ export default class Canvas {
 
     core() {
 
+        if(this.#animationID) this.stop()
+
         const render = () => {
-            window.requestAnimationFrame(render)
+
+            this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height)
             this.things.forEach(thing => thing.core(this))
+
+            this.#animationID = window.requestAnimationFrame(render)
+        
         }
 
         render()
+
+    }
+
+    stop() {
+
+        window.cancelAnimationFrame(this.#animationID)
+        this.#animationID = null
 
     }
 
