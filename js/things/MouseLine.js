@@ -1,6 +1,6 @@
 import Thing from "./Thing.js";
 
-export default class FlowField extends Thing {
+export default class MouseLine extends Thing {
 
     angle = 0
     x = 0
