@@ -1,7 +1,9 @@
 export default class Canvas {
 
     #animationID = null
+
     things = []
+    mouse = { x: 0, y: 0 }
 
     constructor({ container=document.body }) {
 
@@ -12,13 +14,26 @@ export default class Canvas {
         Object.assign(this.canvas, this.dimensions)
         this.container.appendChild(this.canvas)
 
+        this.#addEventListeners()
+
     }
 
-    resize() {
+    #addEventListeners() {
 
-        Object.assign(this.canvas, this.dimensions)
-        this.things.forEach(thing => thing.resize(this))
-    
+        window.addEventListener("resize", () => {
+            
+            Object.assign(this.canvas, this.dimensions)
+            this.things.forEach(thing => thing.resize(this))
+
+        })
+
+        this.canvas.addEventListener("mousemove", e => {
+
+            this.mouse.x = e.x
+            this.mouse.y = e.y
+
+        })
+
     }
 
     get dimensions() {
