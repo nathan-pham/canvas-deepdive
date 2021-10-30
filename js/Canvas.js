@@ -1,5 +1,7 @@
 export default class Canvas {
 
+    things = []
+
     constructor({ container=document.body }) {
 
         this.container = typeof container == "string" ? document.querySelector(container) : container
@@ -17,6 +19,17 @@ export default class Canvas {
             height: this.container.offsetHeight,
             width: this.container.offsetWidth
         }
+
+    }
+
+    core() {
+
+        const render = () => {
+            window.requestAnimationFrame(render)
+            this.things.forEach(thing => thing.core(this))
+        }
+
+        render()
 
     }
 
