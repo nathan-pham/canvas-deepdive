@@ -1,6 +1,10 @@
 export default class Canvas {
 
     #animationID = null
+    #lastTime = 0
+
+    interval = 1000 / 60
+    timer = 0
 
     things = []
     mouse = { x: 0, y: 0 }
@@ -49,10 +53,19 @@ export default class Canvas {
 
         if(this.#animationID) this.stop()
 
-        const render = () => {
+        const render = (timeStamp=0) => {
 
-            this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height)
-            this.things.forEach(thing => thing.core(this))
+            const deltaTime = timeStamp - this.#lastTime
+            this.#lastTime = timeStamp
+
+            if(this.timer > this.interval) {
+
+                this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height)
+                this.things.forEach(thing => thing.core(this))
+
+                this.timer = 0
+
+            } else this.timer += deltaTime
 
             this.#animationID = window.requestAnimationFrame(render)
         
