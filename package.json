@@ -1,0 +1,23 @@
+{
+  "name": "canvas-deepdive",
+  "version": "1.0.0",
+  "description": "![project banner](https://project-banner.phamn23.repl.co/?title=Canvas%20Deep%20Dive&description=Exploring%20JS%20canvas%20animations)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nathan-pham/canvas-deepdive.git"
+  },
+  "keywords": [],
+  "author": "Nathan Pham",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nathan-pham/canvas-deepdive/issues"
+  },
+  "homepage": "https://github.com/nathan-pham/canvas-deepdive#readme",
+  "devDependencies": {
+    "snowpack": "^3.8.8"
+  }
+}
