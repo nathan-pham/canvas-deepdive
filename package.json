@@ -4,7 +4,9 @@
   "description": "![project banner](https://project-banner.phamn23.repl.co/?title=Canvas%20Deep%20Dive&description=Exploring%20JS%20canvas%20animations)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "snowpack dev",
+    "build": "snowpack build"
   },
   "repository": {
     "type": "git",
