@@ -64,7 +64,7 @@ export default class FlowField extends Thing {
 
             ctx.beginPath()
             ctx.moveTo(x, y)
-            ctx.lineTo(x + angle * 20, y + angle * 20)
+            ctx.lineTo(x + Math.cos(angle) * 20, y + Math.sin(angle) * 20)
             ctx.stroke()
 
         }
