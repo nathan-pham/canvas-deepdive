@@ -5,7 +5,7 @@ Math.limit = (n, min, max) => Math.max(min, Math.min(max, n))
 
 export default class FlowField extends Thing {
 
-    cellSize = 35
+    cellSize = 78
     time = 0
 
     init({ ctx, dimensions }) {
@@ -16,7 +16,7 @@ export default class FlowField extends Thing {
     }
 
     update() {
-        this.time += 0.1
+        this.time += 0.01
     }
 
     #createGradient(ctx, dimensions) {
@@ -30,7 +30,7 @@ export default class FlowField extends Thing {
 
     }
 
-    #createGrid(size=30) {
+    #createGrid(size=this.cellSize) {
 
         const points = []
 
@@ -50,21 +50,30 @@ export default class FlowField extends Thing {
 
         const margin = 30
 
-        ctx.fillStyle = "#000"
-        ctx.fillRect(0, 0, width, height)
+        // ctx.fillStyle = "rgba(0, 0, 0, 0.75)"
+        // ctx.fillRect(0, 0, width, height)
        
         ctx.strokeStyle = this.gradient
+        ctx.lineWidth = 0.3
 
         for(const point of this.points) {
             const [u, v] = point
 
+    
+            // const lineRadius = this.cellSize
+
             const x = Math.lerp(margin, width - margin, u)
             const y = Math.lerp(margin, height - margin, v)
-            const angle = Math.cos(x * 0.01 + this.time) + Math.sin(y * 0.01 + this.time)
 
+            const zoom = 0.008 // larger zooms out
+            const wrapRadius = 3
+
+            const angle = (Math.cos(x * zoom + this.time) + Math.sin(y * zoom + this.time)) * wrapRadius
+            const lineRadius = Math.hypot(mouse.x - x, mouse.y - y) / 20 // or just sqrt
+          
             ctx.beginPath()
             ctx.moveTo(x, y)
-            ctx.lineTo(x + Math.cos(angle) * 20, y + Math.sin(angle) * 20)
+            ctx.lineTo(x + Math.cos(angle) * lineRadius, y + Math.sin(angle) * lineRadius)
             ctx.stroke()
 
         }

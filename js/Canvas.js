@@ -67,7 +67,8 @@ export default class Canvas {
 
             if(this.timer > this.interval) {
 
-                this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height)
+                // this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height)
+
                 this.things.forEach(thing => thing.core(this))
 
                 this.timer = 0
