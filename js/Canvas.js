@@ -22,6 +22,13 @@ export default class Canvas {
 
     }
 
+    push(...things) {
+
+        things.forEach(thing => thing.init(this))
+        this.things.push(...things)
+        
+    }
+
     #addEventListeners() {
 
         window.addEventListener("resize", () => {

@@ -1,6 +1,10 @@
 export default class Thing {
 
-    resize() {}
+    init() {}
+    resize(canvas) {
+        this.init(canvas)
+    }
+
     update() {}
     render() {}
 
