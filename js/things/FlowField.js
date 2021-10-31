@@ -30,7 +30,7 @@ export default class FlowField extends Thing {
 
     }
 
-    #createGrid(size=32) {
+    #createGrid(size=30) {
 
         const points = []
 
@@ -60,7 +60,7 @@ export default class FlowField extends Thing {
 
             const x = Math.lerp(margin, width - margin, u)
             const y = Math.lerp(margin, height - margin, v)
-            const angle = Math.cos(x * 0.25 + this.time) + Math.sin(y * 0.25 + this.time)
+            const angle = Math.cos(x * 0.01 + this.time) + Math.sin(y * 0.01 + this.time)
 
             ctx.beginPath()
             ctx.moveTo(x, y)
